@@ -1,2 +1,1 @@
 # trainingSystem
-User training system

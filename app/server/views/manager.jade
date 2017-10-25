@@ -1,0 +1,51 @@
+
+extends layout
+
+block content
+	div.container(style='margin:50px 50px 50px 50px')
+		nav.navbar.navbar-default.navbar-fixed-top
+			.container
+				a(href='/home')
+					img(src='/vendor/vergemobile.png')
+				.navbar-header
+					.navbar-brand Manager Control Panel
+				ul.nav.navbar-nav.navbar-right
+					li
+						.navbar-btn#btn-logout.btn.btn-default
+							| Sign Out
+
+	div.container(style='margin:20px')
+		table.table.table-bordered.table-striped
+			thead
+				tr
+					th(style='width:40px') # Unique Identifier
+					th(style='width:180px') Name
+					th(style='width:200px') Type
+					th(style='width:180px') Username
+					th Account Created
+					th Phase 1
+					th Phase 2
+					th Phase 3
+					th Delete
+			tbody
+			- for (var i = 0; i < accts.length; i++)
+				- if (accts[i].country == "Trainee")
+					tr
+						td= accts[i]._id
+						td= accts[i].name
+						td= accts[i].country
+						td= accts[i].user
+						td= accts[i].date
+						td= accts[i].phase1
+						td= accts[i].phase2
+						td= accts[i].phase3
+						td 
+							a(href='/delete?id=#{accts[i]._id}' , onclick='return confirm("You are going to delete this user. Continue?")') Delete
+
+block scripts
+	script(src='/vendor/jquery-2.2.3.min.js')
+	script(src='/vendor/jquery.form.min.js')
+	script(src='/vendor/bootstrap.min.js')
+	script(src='/js/views/home.js')
+	script(src='/js/controllers/homeController.js')
+	script(src='/js/form-validators/accountValidator.js')
